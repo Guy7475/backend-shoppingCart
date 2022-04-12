@@ -7,7 +7,7 @@ module.exports = {
 }
 
 // Database Name
-const dbName = 'mistertask_db'
+const dbName = 'store_db'
 
 var dbConn = null
 
@@ -15,6 +15,7 @@ async function getCollection(collectionName) {
     try {
         const db = await connect()
         const collection = await db.collection(collectionName)
+            // console.log('collectioncollection', collection);
         return collection
     } catch (err) {
         logger.error('Failed to get Mongo collection', err)
@@ -34,7 +35,3 @@ async function connect() {
         throw err
     }
 }
-
-
-
-

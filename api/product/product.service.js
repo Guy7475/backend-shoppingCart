@@ -38,12 +38,13 @@ async function query(filterBy) {
         // const criteria = _buildCriteria(filterBy)
         const criteria = {};
 
-        const collection = await dbService.getCollection('task');
+        const collection = await dbService.getCollection('product');
+        // console.log('collectioncollection', collection);
         var tasks = await collection.find(criteria).toArray();
         // tasks.sort((task1, task2) => task2.price - task1.price) WORKING!
         return tasks;
     } catch (err) {
-        logger.error('cannot find tasks', err);
+        // logger.error('cannot find tasks', err);
         throw err;
     }
     // FOR LOCAL DB + SERVER:
@@ -129,12 +130,12 @@ async function add(task) {
 
 async function update(task) {
     // FOR MONGO + SERVER:
-    
+
     try {
         var id = ObjectId(task._id);
         delete task._id;
         const collection = await dbService.getCollection('task');
-        await collection.updateOne({ "_id": id }, { $set: { ...task } });
+        await collection.updateOne({ "_id": id }, { $set: {...task } });
         task._id = id;
         socketService.updateTasks()
         return task;
@@ -191,7 +192,7 @@ async function setWorkerState() {
 }
 
 async function runWorker() {
-    
+
     // The isWorkerOn is toggled by the button: "Start/Stop Task Worker"
     console.log('isWorkingOn:', isWorkerOn);
     if (!isWorkerOn) return;

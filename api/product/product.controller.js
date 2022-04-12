@@ -1,11 +1,11 @@
-const taskService = require('./task.service.js');
+const productService = require('./product.service.js');
 const logger = require('../../services/logger.service')
     // Importing chalk module
 const chalk = require("chalk");
 const { set } = require('express/lib/application');
 
 module.exports = {
-    getTasks,
+    getProducts,
     getTaskById,
     addTask,
     updateTask,
@@ -16,16 +16,17 @@ module.exports = {
 }
 
 // GET LIST
-async function getTasks(req, res) {
+async function getProducts(req, res) {
     try {
         var queryParams = req.query;
-        const tasks = await taskService.query(queryParams)
-        console.log(chalk.green('got your tasks from server!'));
-        // console.log('taskstaskstasks', tasks);
-        res.json(tasks);
+        const products = await productService.query(queryParams)
+            // console.log('checkkkkk', products);
+        console.log(chalk.green('got your products from server!'));
+
+        res.json(products);
     } catch (err) {
-        logger.error(chalk.red('Failed to get tasks'), err)
-        res.status(500).send({ err: 'Failed to get tasks' })
+        // logger.error(chalk.red('Failed to get products'), err)
+        res.status(500).send({ err: 'Failed to get products' })
     }
 
     // FOR MONGO + SERVER + also need filter!:
@@ -136,9 +137,9 @@ async function startTask(req, res) {
     try {
         const taskId = req.params.id;
         let task = await taskService.getById(taskId)
-        // console.log('controller - before performTask', task)
+            // console.log('controller - before performTask', task)
         task = await taskService.performTask(task)
-        // console.log('controller - after performTask', task)
+            // console.log('controller - after performTask', task)
         res.json(task)
     } catch (err) {
         logger.error(chalk.red('controller catch - Failed to get task'), err)
@@ -152,10 +153,8 @@ async function toggleWorker(req, res) {
         console.log(req.query.params)
         const workerState = (req.query.params)
         taskService.setWorkerState()
-        // taskService.runWorker()
+            // taskService.runWorker()
     } catch (error) {
-        
+
     }
 }
-
-

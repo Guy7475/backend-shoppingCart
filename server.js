@@ -28,8 +28,8 @@ if (process.env.NODE_ENV === 'production') {
 
 // const authRoutes = require('./api/auth/auth.routes')
 // const userRoutes = require('./api/user/user.routes')
-const taskRoutes = require('./api/task/task.routes')
-const {connectSockets} = require('./services/socket.service')
+const productRoutes = require('./api/product/product.routes')
+const { connectSockets } = require('./services/socket.service')
 
 // routes
 const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
@@ -37,7 +37,7 @@ app.all('*', setupAsyncLocalStorage)
 
 // app.use('/api/auth', authRoutes)
 // app.use('/api/user', userRoutes)
-app.use('/api/task', taskRoutes)
+app.use('/api/product', productRoutes)
 connectSockets(http, session)
 
 // Make every server-side-route to match the index.html

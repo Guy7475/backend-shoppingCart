@@ -1,14 +1,14 @@
 const express = require('express');
 const { requireAuth, requireAdmin } = require('../../middlewares/requireAuth.middleware');
 const { log } = require('../../middlewares/logger.middleware');
-const { getTasks, getTaskById, addTask, updateTask, removeTask, startTask, toggleWorker, } = require('./task.controller');
+const { getProducts, getTaskById, addTask, updateTask, removeTask, startTask, toggleWorker, } = require('./product.controller');
 const router = express.Router();
 
 // middleware that is specific to this router
 // router.use(requireAuth)
 
+router.get('/', getProducts);
 router.get('/runworker', toggleWorker)
-router.get('/', log, getTasks);
 router.get('/:id', getTaskById);
 
 
