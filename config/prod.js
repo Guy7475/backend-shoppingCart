@@ -1,5 +1,6 @@
 module.exports = {
-  dbURL: 'mongodb+srv://test:1234@cluster1.ellxz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+  dbURL:
+    'mongodb+srv://talAmit:711AIALT@cluster0.logrx.mongodb.net/STOR_DB?retryWrites=true&w=majority',
 }
 
 
